@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Your Tasks</h2>
+<form method="POST">
+{{ form.hidden_tag() }}
+<div class="mb-3">
+{{ form.task.label(class="form-label") }}
+{{ form.task(class="form-control") }}
+</div>
+{{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}
