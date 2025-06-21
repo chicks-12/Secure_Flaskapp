@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+<div class="col-md-8 col-lg-6">
+<div class="card border-0 shadow-sm">
+<div class="card-body p-5">
+<div class="text-center mb-4">
+<h2 class="fw-bold">Welcome Back</h2>
+<p class="text-muted">Please enter your credentials to login</p>
+</div>
+
+<form method="POST" novalidate>
+{{ form.hidden_tag() }}
+
+<div class="mb-3">
+{{ form.username.label(class="form-label fw-bold") }}
+<div class="input-group">
+<span class="input-group-text">
+<i class="bi bi-person-fill"></i>
+</span>
+{{ form.username(class="form-control" + (" is-invalid" if form.username.errors else ""), placeholder="Enter your username") }}
+</div>
+{% for error in form.username.errors %}
+<div class="invalid-feedback d-block">{{ error }}</div>
+{% endfor %}
+</div>
+
+<div class="mb-3">
+{{ form.password.label(class="form-label fw-bold") }}
+<div class="input-group">
+<span class="input-group-text">
+<i class="bi bi-lock-fill"></i>
+</span>
+{{ form.password(class="form-control" + (" is-invalid" if form.password.errors else ""), placeholder="Enter your password", id="passwordField") }}
+<button class="btn btn-outline-secondary toggle-password" type="button">
+<i class="bi bi-eye-fill"></i>
+</button>
+</div>
+{% for error in form.password.errors %}
+<div class="invalid-feedback d-block">{{ error }}</div>
+{% endfor %}
+</div>
+
+<div class="d-grid mb-3">
+{{ form.submit(class="btn btn-primary btn-lg fw-bold") }}
+</div>
+
+<div class="text-center">
+<p class="text-muted">Don't have an account? 
+<a href="{{ url_for('register') }}" class="text-decoration-none">Register here</a>
+</p>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
